@@ -1,5 +1,7 @@
 package com.abc.app.memberapp;
 
+import android.content.Context;
+
 import java.util.List;
 
 /**
@@ -7,16 +9,13 @@ import java.util.List;
  */
 public class MemberServiceImpl implements MemberService{
     private MemberBean st = new MemberBean();
-    private MemberDAO dao = MemberDAO.getInstance(); //싱글톤 패턴
     private MemberBean session;
-    private static MemberServiceImpl instance = new MemberServiceImpl();
+    private MemberDAO dao = null;
+    private Context context;
 
-    public static MemberServiceImpl getInstance() {
-        return instance;
-    }
-
-    private MemberServiceImpl() {
-        session = new MemberBean();
+    public MemberServiceImpl(Context context) {
+        this.context = context;
+        dao = new MemberDAO(this.context);
     }
 
     @Override

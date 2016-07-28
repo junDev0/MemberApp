@@ -11,11 +11,13 @@ import android.widget.Toast;
 public class MainActivity extends Activity implements View.OnClickListener {
 
     EditText et_id,et_pw;
-    Button bt_login,bt_join;
+    Button bt_login,bt_join,bt_img;
+    MemberService service;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        service = new MemberServiceImpl(this.getApplication());
         init();
     }
 
@@ -24,9 +26,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
         et_pw= (EditText)findViewById(R.id.et_pw);
         bt_login = (Button) findViewById(R.id.bt_login);
         bt_join = (Button)findViewById(R.id.bt_join);
+        bt_img = (Button)findViewById(R.id.bt_img);
 
         bt_login.setOnClickListener(this);
         bt_join.setOnClickListener(this);
+        bt_img.setOnClickListener(this);
 
     }
 
@@ -40,11 +44,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     Toast.makeText(MainActivity.this, "아이디와 비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(MainActivity.this, "아이디:" + id + "\n비밀번호:" + pw, Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(this,HomeActivity.class));
                 }
                 break;
             case R.id.bt_join:
                 startActivity(new Intent(MainActivity.this,JoinActivity.class));
                 break;
+            case R.id.bt_img:
+                startActivity(new Intent(MainActivity.this,ImageActivity.class));
+                break;
+
         }
 
     }

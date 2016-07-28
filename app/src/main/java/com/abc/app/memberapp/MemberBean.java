@@ -4,9 +4,17 @@ package com.abc.app.memberapp;
  * Created by hb2020 on 2016-07-27.
  */
 public class MemberBean {
-    private String id,pw,name,ssn,email,phone;
+    private String id, pw, name, ssn, email, phone;
+    private int photo;
 
 
+    public int getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(int photo) {
+        this.photo = photo;
+    }
 
     public String getId() {
         return id;
